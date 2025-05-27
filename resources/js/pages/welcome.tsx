@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { clsx } from 'clsx';
 import { ComponentProps, ReactNode, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { Input } from '@/components/ui/input';
 
 export default function Welcome() {
     const [toggle, setToggle] = useState(false);
@@ -12,6 +14,7 @@ export default function Welcome() {
             <Button className="mb-6" onClick={() => setToggle((prev) => !prev)} variant={toggle ? 'secondary' : 'default'}>
                 Toggle: {toggle ? 'ON' : 'OFF'}
             </Button>
+            <Input placeholder="Digite algo..." className="mb-4 max-w-xs" />
             <div className="flex w-full max-w-xs flex-col gap-4">
                 <Box className={clsx(toggle ? 'bg-black text-white' : 'bg-white text-black')}>
                     I am inside a box
@@ -31,7 +34,7 @@ type BoxProps = {
 function Box({ children, className = '', ...restProps }: BoxProps) {
     return (
         <div
-            className={clsx(
+            className={twMerge(
                 'flex cursor-pointer flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-6 text-slate-700 shadow-lg transition hover:scale-105 hover:shadow-2xl',
                 className,
             )}
